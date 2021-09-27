@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.invoicegenerator.InvoiceGenerator;
+import com.invoicegenerator.InvoiceSummary;
 import com.invoicegenerator.MultipleRide;
 
 public class InvoiceGeneratorTest {
@@ -37,14 +38,16 @@ public class InvoiceGeneratorTest {
 		Assert.assertEquals(5.0, fare, 0.0);
 	}
 	@Test
-	public void givenMultipleRides_ShouldReturnTotalFare()
+	public void givenMultipleRides_ShouldReturnInvoiceSummary()
 	{
 		InvoiceGenerator invoiceGenerator =  new InvoiceGenerator();
 		MultipleRide[] rides = { new MultipleRide(2.0, 5.0),
 				         new MultipleRide(0.1, 1.0)
 				       };
-		double fare = invoiceGenerator.calculateTotalFare(rides);
-		Assert.assertEquals(30.0, fare, 0.0);
+		InvoiceSummary summary = invoiceGenerator.calculateTotalFare(rides);
+		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.0);
+		Assert.assertEquals(expectedInvoiceSummary, summary);
+	}
 	}
 
-}
+

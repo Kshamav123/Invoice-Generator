@@ -27,14 +27,14 @@ public class InvoiceGenerator {
 		return totalFare;
 	}
 	
-	public double calculateTotalFare(MultipleRide[] rides) 
+	public InvoiceSummary calculateTotalFare(MultipleRide[] rides) 
 	{
 		double totalFare = 0.0;
 		for (MultipleRide ride : rides) 
 		{
 			totalFare += this.calculateTotalFare(ride.distance, ride.time);
 		}
-		return totalFare;
+		return new InvoiceSummary(rides.length, totalFare);
 	}
-
+	
 }
